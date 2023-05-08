@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <%-include('partials/nav') %>
+    <!-- CONTENT -->
+    <section class="main-section">
+      <div class="blogs">
+        <div class="blog-header">
+          <h2 class="blog-text">All Blogs</h2>
+          <a href="/addBlog"
+            ><ion-icon name="add-circle" class="blog-icon"></ion-icon
+          ></a>
+        </div>
+        <% for( blogs of blog) { %>
+        <div class="blog-container">
+          <div class="blog-card">
+            <div class="blog-img">
+              <img src="img/blog-img.png" alt="blog" />
+            </div>
+            <div class="blog-content">
+              <div class="blog-title"><%= blogs.title %></div>
+              <div class="blog-author-box">
+                <!-- img and name -->
+                <div class="blog-author">
+                  <div class="blog-author-img">
+                    <img src="img/av.jpg" alt="avatar" />
+                  </div>
+                  <div class="blog-author-name">Author</div>
+                </div>
+                <!-- btn -->
+                <div class="read-btn">
+                  <a href="/article/<%= blogs._id %>">read</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
