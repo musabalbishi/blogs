@@ -1,9 +1,17 @@
-<header class="details-header"></header>
-<div class="content">
+<header class="details-header">
   <h2 class="title"><%= foundBlog.title %></h2>
-  <h2 class="body"><%= foundBlog.body %></h2>
   <div class="btns">
-    <a href="/deleteBlog/<%= foundBlog._id%>" class="del-btn">delete</a>
-    <a href="/updateBlog/<%= foundBlog._id%>" class="ed-btn">edit</a>
+    <a href="/deleteBlog/<%= foundBlog._id%>" class="btn del-btn"
+      >Delete<ion-icon name="create"></ion-icon
+    ></a>
+    <a href="/updateBlog/<%= foundBlog._id%>" class="btn ed-btn"
+      >Edit<ion-icon name="create"></ion-icon
+    ></a>
+  </div>
+</header>
+<div class="b-content">
+  <p class="body"><%= foundBlog.body %></p>
+  <div class="time">
+    <p>created at: <%=foundBlog.createdAt %></p>
   </div>
 </div>

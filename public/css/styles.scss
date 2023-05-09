@@ -3,9 +3,10 @@
   color: #333;
   font-weight: 700;
 }
-
 //**********//
 $box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+$box-shadow2: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 $bg-1: #d9e4f5;
 //**********//
 * {
@@ -58,18 +59,24 @@ body {
 }
 //***********//
 .main-section {
-  margin: 3rem 1rem;
-  padding: 0 1rem;
+  // margin: 3rem 1rem;
+  // padding: 0 1rem;
   // border: 1px solid #333;
   .blog-container {
+    // display: grid;
+    // grid-template-columns: repeat(4, 1fr);
+    // gap: 1rem;\
     display: flex;
-    flex-wrap: wrap;
-    margin: 0.7rem 1rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0 2rem;
   }
   .blog-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0 1rem;
     .blog-icon {
       height: 30px;
       width: 30px;
@@ -80,12 +87,12 @@ body {
     }
   }
   .blog-card {
-    height: 20rem;
-    width: 19rem;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    height: 10rem;
+    // width: 12rem;
+    box-shadow: $box-shadow2;
     border-radius: 10px;
     overflow: hidden;
+    justify-self: center;
     .blog-img img {
       width: 100%;
       overflow: hidden;
@@ -121,18 +128,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ccc;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
   height: 100vh-10;
   form {
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 6rem 12rem;
+    width: 100%;
     input {
       display: flex;
       flex-direction: column;
-      padding: 0.8rem 1rem;
+      padding: 0.8rem 0;
       border: none;
-      background-color: rgba(203, 199, 199, 0.867);
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
       border-radius: 8px;
     }
     .body {
@@ -150,13 +158,33 @@ body {
   }
 }
 .details-header {
-  background-color: #000;
+  background-color: $bg-1;
   padding: 0.5rem 1.5rem;
-  height: 200px;
-  .content {
-    max-width: 1100px;
-    background-color: #333;
-    border: 1px solid black;
-    margin: 0 auto;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // margin-bottom: 2rem;
+  .btn {
+    color: #333;
+    height: 30px;
+    width: 30px;
+    text-decoration: none;
+    background-color: #eee;
+    padding: 1rem;
+    border-radius: 9px;
+  }
+}
+.b-content {
+  position: relative;
+  max-width: 1100px;
+  margin: 1rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: $box-shadow2;
+  height: 100vh;
+  .time {
+    position: absolute;
+    bottom: 0;
   }
 }

@@ -97,7 +97,7 @@ app.get("/updateBlog/:id", (req, res) => {
 });
 app.post("/updateBlog/:id", (req, res) => {
   let Utitle = req.body.title;
-  let Ubody = req.body.body;
+  let Ubody = req.body.content;
   Blog.findById(req.params.id).then((foundBlog) => {
     foundBlog.title = Utitle;
     foundBlog.body = Ubody;
