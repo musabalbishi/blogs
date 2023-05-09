@@ -70,7 +70,6 @@ app.get("/article/:id", (req, res) => {
   Blog.findById(req.params.id)
     .then((foundBlog) => {
       res.render("blogDetails.ejs", { foundBlog: foundBlog });
-      //   res.send(foundBlog);
     })
     .catch((error) => {
       res.send(error.message);
@@ -85,6 +84,32 @@ app.get("/deleteBlog/:id", (req, res) => {
     .catch((e) => {
       console.log(e.message);
     });
+});
+// update
+app.get("/updateBlog/:id", (req, res) => {
+  Blog.findByIdAndUpdate(req.params.id)
+    .then((foundBlog) => {
+      res.render("updateBlog.ejs", { foundBlog: foundBlog });
+    })
+    .catch((e) => {
+      console.log(e.message);
+    });
+});
+app.post("/updateBlog/:id", (req, res) => {
+  let Utitle = req.body.title;
+  let Ubody = req.body.body;
+  Blog.findById(req.params.id).then((foundBlog) => {
+    foundBlog.title = Utitle;
+    foundBlog.body = Ubody;
+    foundBlog
+      .save()
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  });
 });
 app.listen(5500, () => {
   console.log("Connected on Port 5500");

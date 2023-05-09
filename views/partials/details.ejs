@@ -3,7 +3,7 @@
   <h2 class="title"><%= foundBlog.title %></h2>
   <h2 class="body"><%= foundBlog.body %></h2>
   <div class="btns">
-    <a href="/deleteBlog/<%= foundBlog._id%>">delete</a>
-    <a href="/deleteBlog/<%= foundBlog._id%>">edit</a>
+    <a href="/deleteBlog/<%= foundBlog._id%>" class="del-btn">delete</a>
+    <a href="/updateBlog/<%= foundBlog._id%>" class="ed-btn">edit</a>
   </div>
 </div>
