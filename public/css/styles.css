@@ -51,9 +51,11 @@ body {
 .main-section .blog-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 1rem;
-  margin: 0 2rem;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  max-width: 1200px;
 }
 .main-section .blog-header {
   display: flex;
@@ -71,10 +73,12 @@ body {
 }
 .main-section .blog-card {
   height: 10rem;
+  width: 30%;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 10px;
   overflow: hidden;
   justify-self: center;
+  position: relative;
 }
 .main-section .blog-card .blog-img img {
   width: 100%;
@@ -90,13 +94,15 @@ body {
 .main-section .blog-card .blog-content .blog-author-box {
   display: flex;
   align-items: center;
+  position: absolute;
+  bottom: 0;
 }
 .main-section .blog-card .blog-content .blog-author-box .blog-author {
   display: flex;
   align-items: center;
 }
 .main-section .blog-card .blog-content .blog-author-box .blog-author-img {
-  width: 20%;
+  width: 15%;
 }
 .main-section .blog-card .blog-content .blog-author-box .blog-author-img img {
   width: 100%;
