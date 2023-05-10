@@ -10,7 +10,10 @@ app.use(express.static(path.join(__dirname, "public")));
 ////////////////////////////////////////////////////////
 // DB connection
 mongoose
-  .connect("mongodb://0.0.0.0:27017/blogs")
+  .connect(
+    "mongodb+srv://musab:musab123m@cluster0.tcmbhbd.mongodb.net/?retryWrites=true&w=majority"
+    // "mongodb://0.0.0.0:27017/blogs"
+  )
   .then(() => {
     console.log("DB connection successeded");
   })
