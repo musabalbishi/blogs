@@ -22,6 +22,8 @@ mongoose
   });
 const User = require("./models/User");
 const Blog = require("./models/Blog");
+const ProfileModule = require("./models/Profile");
+const Profile = ProfileModule.Profile;
 //
 app.get("/", (req, res) => {
   Blog.find().then((blog) => {
@@ -48,6 +50,57 @@ app.post("/signup", (req, res) => {
       console.log(e.message);
     });
   res.redirect("/");
+});
+// add profile
+app.get("/profiles", (req, res) => {
+  const p = new Profile({
+    bio: "dd",
+    workExp: "dd",
+  });
+  p.save()
+    .then(() => {
+      console.log("good");
+    })
+    .catch((e) => {
+      console.log(e.message);
+    });
+});
+// find profile by id --> not working
+app.get("/findUserProfile", (req, res) => {
+  User.findById("645b4f1125279e68253dc4f4")
+    .populate("userProfile")
+    .then((user) => {
+      res.send(user);
+    });
+});
+// create
+app.get("/createUserWithProfile", (req, res) => {
+  Profile.findById("645b4f1125279e68253dc4f4").then((profile) => {
+    const u = new User({
+      username: "dddd",
+      password: "1234",
+      email: "dddd@ddd.com",
+      userProfile: profile._id,
+    });
+
+    u.save().then(() => {
+      res.send(u);
+    });
+  });
+});
+//
+app.get("/createProfileWithUser", (req, res) => {
+  User.findById("645b4dba967cb6de825edbd3").then((user) => {
+    const p = new Profile({
+      bio: "mmmmm",
+      workExp: "1234",
+      userProfile: user._id,
+    });
+
+    p.save().then(() => {
+      res.send(p);
+    });
+  });
 });
 // add blogs
 app.get("/addBlog", (req, res) => {

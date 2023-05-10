@@ -23,38 +23,46 @@
     <!-- HEADER -->
     <%-include('partials/nav') %>
     <!-- CONTENT -->
+    <div class="cir1"></div>
+    <div class="cir2"></div>
     <section class="main-section">
       <div class="blogs">
         <div class="blog-header">
           <h2 class="blog-text">All Blogs</h2>
-          <a href="/addBlog"
-            ><ion-icon name="add-circle" class="blog-icon"></ion-icon
-          ></a>
         </div>
-        <div class="blog-container">
-          <% for( blogs of blog) { %>
-          <div class="blog-card">
-            <!-- <div class="blog-img">
-              <img src="img/blog-img.png" alt="blog" />
-            </div> -->
-            <div class="blog-content">
-              <div class="blog-title"><%= blogs.title %></div>
-              <div class="blog-author-box">
-                <!-- img and name -->
-                <div class="blog-author">
-                  <div class="blog-author-img">
-                    <img src="img/av.jpg" alt="avatar" />
+        <!--  -->
+        <div class="blog-main-cont">
+          <!-- sidebar -->
+          <div class="blog-sidebar">
+            <div><a href="#">Account</a></div>
+            <div><a href="/">All Blogs</a></div>
+            <div><a href="/addBlog">Create a Blog</a></div>
+          </div>
+          <!-- bligs -->
+          <div class="blog-container">
+            <% for( blogs of blog) { %>
+            <div class="blog-card">
+              <div class="blog-content">
+                <div class="blog-title"><%= blogs.title %></div>
+                <div class="blog-author-box">
+                  <!-- img and name -->
+                  <div class="blog-author">
+                    <div class="blog-author-img">
+                      <img src="img/av.jpg" alt="avatar" />
+                    </div>
+                    <div class="blog-author-name">Author</div>
                   </div>
-                  <div class="blog-author-name">Author</div>
-                </div>
-                <!-- btn -->
-                <div class="read-btn">
-                  <a href="/article/<%= blogs._id %>">read</a>
+                  <!-- btn -->
+                  <div class="read-btn">
+                    <a href="/article/<%= blogs._id %>">read</a>
+                  </div>
                 </div>
               </div>
             </div>
+            <% } %>
           </div>
-          <% } %>
+
+          <!--  -->
         </div>
       </div>
     </section>

@@ -1,13 +1,16 @@
 @mixin anchor-mix {
   text-decoration: none;
-  color: #333;
+  color: #fff;
   font-weight: 700;
 }
 //**********//
-$box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+$box-shadow: 0px 5px 30px rgba(198, 195, 195, 0.1);
 $box-shadow2: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
   rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 $bg-1: #d9e4f5;
+$grid-color: rgba(255, 244, 244, 0.1);
+$blog-cards-radius: 10px;
+
 //**********//
 * {
   padding: 0;
@@ -18,16 +21,40 @@ $bg-1: #d9e4f5;
 body {
   font-family: "Poppins", sans-serif;
   margin: 0 auto;
+  background-color: #333;
+  position: relative;
+  height: 100vh;
+  overflow-x: hidden;
 }
 //*********//
-
+.cir1 {
+  height: 17rem;
+  width: 17rem;
+  background-color: rgba(164, 110, 110, 0.2);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  right: inherit;
+  box-shadow: $box-shadow;
+}
+.cir2 {
+  height: 10rem;
+  width: 10rem;
+  background-color: rgba(164, 110, 110, 0.2);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  right: inherit;
+  box-shadow: $box-shadow;
+}
 .header {
-  background: linear-gradient(205deg, $bg-1);
+  // background: linear-gradient(205deg, $bg-1);
+  // background-color: #333;
   padding: 0.5rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: $box-shadow;
+  // box-shadow: $box-shadow;
   .nav-ul {
     display: flex;
     list-style: none;
@@ -49,7 +76,7 @@ body {
       padding: 0.7rem 1rem;
       border: 2px solid #000;
       border-radius: 15px;
-      color: #000;
+      color: #fff;
     }
     .sign-in {
       background-color: #000;
@@ -59,6 +86,19 @@ body {
 }
 //***********//
 .main-section {
+  .blog-main-cont {
+    display: grid;
+    grid-template-columns: 20rem 1fr;
+    grid-template-rows: 20rem 1fr;
+    gap: 2rem;
+    grid-row: span 2;
+    padding: 0 1rem;
+    .blog-sidebar {
+      background-color: $grid-color;
+      // grid-row: span 2;
+      border-radius: $blog-cards-radius;
+    }
+  }
   .blog-container {
     display: flex;
     align-items: center;
@@ -66,7 +106,8 @@ body {
     gap: 1rem;
     margin: 0 auto;
     flex-wrap: wrap;
-    max-width: 1200px;
+    // max-width: 1200px;
+    width: 100%;
   }
   .blog-header {
     display: flex;
@@ -76,38 +117,44 @@ body {
     .blog-icon {
       height: 30px;
       width: 30px;
-      color: #333;
+      color: #fff;
     }
     .blog-text {
       padding: 1rem 0;
+      color: #fff;
     }
   }
   .blog-card {
     height: 10rem;
     width: 30%;
     box-shadow: $box-shadow2;
-    border-radius: 10px;
+    border-radius: $blog-cards-radius;
     overflow: hidden;
     justify-self: center;
     position: relative;
-    .blog-img img {
-      width: 100%;
-      overflow: hidden;
+    background-color: $grid-color;
+    &:hover {
+      background-color: rgba(255, 244, 244, 0.3);
     }
+
     .blog-content {
       padding: 0 1rem;
       .blog-title {
         font-size: 1.4rem;
         font-weight: 500;
+        color: #fff;
       }
       .blog-author-box {
         display: flex;
         align-items: center;
         position: absolute;
+        justify-self: center;
         bottom: 0;
+        padding: 0 0.5rem;
         .blog-author {
           display: flex;
           align-items: center;
+          color: #fff;
         }
         .blog-author-img {
           width: 15%;
@@ -123,6 +170,7 @@ body {
     }
   }
 }
+
 .form-container {
   display: flex;
   justify-content: center;
@@ -151,7 +199,7 @@ body {
       border-radius: 8px;
       border: none;
       margin-top: 1rem;
-      color: #000;
+      color: #fff;
       font-weight: 700;
     }
   }
@@ -165,7 +213,7 @@ body {
   justify-content: space-between;
   // margin-bottom: 2rem;
   .btn {
-    color: #333;
+    color: #fff;
     height: 30px;
     width: 30px;
     text-decoration: none;

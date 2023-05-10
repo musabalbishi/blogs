@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -8,6 +7,10 @@ const userSchema = new Schema(
     password: String,
     email: String,
     role: String,
+    userProfile: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "profile",
+    },
   },
   {
     timestamps: true,

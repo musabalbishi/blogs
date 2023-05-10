@@ -7,15 +7,39 @@
 body {
   font-family: "Poppins", sans-serif;
   margin: 0 auto;
+  background-color: #333;
+  position: relative;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.cir1 {
+  height: 17rem;
+  width: 17rem;
+  background-color: rgba(164, 110, 110, 0.2);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  right: inherit;
+  box-shadow: 0px 5px 30px rgba(198, 195, 195, 0.1);
+}
+
+.cir2 {
+  height: 10rem;
+  width: 10rem;
+  background-color: rgba(164, 110, 110, 0.2);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  right: inherit;
+  box-shadow: 0px 5px 30px rgba(198, 195, 195, 0.1);
 }
 
 .header {
-  background: linear-gradient(205deg, #d9e4f5);
   padding: 0.5rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
 }
 .header .nav-ul {
   display: flex;
@@ -28,26 +52,38 @@ body {
 .header .nav-ul .nav-li a:visited,
 .header .nav-ul .nav-li a:active {
   text-decoration: none;
-  color: #333;
+  color: #fff;
   font-weight: 700;
 }
 .header .profile a:link,
 .header .profile a:visited,
 .header .profile a:active {
   text-decoration: none;
-  color: #333;
+  color: #fff;
   font-weight: 700;
   margin: 0 1rem;
   padding: 0.7rem 1rem;
   border: 2px solid #000;
   border-radius: 15px;
-  color: #000;
+  color: #fff;
 }
 .header .profile .sign-in {
   background-color: #000;
   color: #fff !important;
 }
 
+.main-section .blog-main-cont {
+  display: grid;
+  grid-template-columns: 20rem 1fr;
+  grid-template-rows: 20rem 1fr;
+  gap: 2rem;
+  grid-row: span 2;
+  padding: 0 1rem;
+}
+.main-section .blog-main-cont .blog-sidebar {
+  background-color: rgba(255, 244, 244, 0.1);
+  border-radius: 10px;
+}
 .main-section .blog-container {
   display: flex;
   align-items: center;
@@ -55,7 +91,7 @@ body {
   gap: 1rem;
   margin: 0 auto;
   flex-wrap: wrap;
-  max-width: 1200px;
+  width: 100%;
 }
 .main-section .blog-header {
   display: flex;
@@ -66,10 +102,11 @@ body {
 .main-section .blog-header .blog-icon {
   height: 30px;
   width: 30px;
-  color: #333;
+  color: #fff;
 }
 .main-section .blog-header .blog-text {
   padding: 1rem 0;
+  color: #fff;
 }
 .main-section .blog-card {
   height: 10rem;
@@ -79,10 +116,10 @@ body {
   overflow: hidden;
   justify-self: center;
   position: relative;
+  background-color: rgba(255, 244, 244, 0.1);
 }
-.main-section .blog-card .blog-img img {
-  width: 100%;
-  overflow: hidden;
+.main-section .blog-card:hover {
+  background-color: rgba(255, 244, 244, 0.3);
 }
 .main-section .blog-card .blog-content {
   padding: 0 1rem;
@@ -90,16 +127,20 @@ body {
 .main-section .blog-card .blog-content .blog-title {
   font-size: 1.4rem;
   font-weight: 500;
+  color: #fff;
 }
 .main-section .blog-card .blog-content .blog-author-box {
   display: flex;
   align-items: center;
   position: absolute;
+  justify-self: center;
   bottom: 0;
+  padding: 0 0.5rem;
 }
 .main-section .blog-card .blog-content .blog-author-box .blog-author {
   display: flex;
   align-items: center;
+  color: #fff;
 }
 .main-section .blog-card .blog-content .blog-author-box .blog-author-img {
   width: 15%;
@@ -110,7 +151,7 @@ body {
 }
 .main-section .blog-card .blog-content .blog-author-box .read-btn a {
   text-decoration: none;
-  color: #333;
+  color: #fff;
   font-weight: 700;
 }
 
@@ -144,7 +185,7 @@ body {
   border-radius: 8px;
   border: none;
   margin-top: 1rem;
-  color: #000;
+  color: #fff;
   font-weight: 700;
 }
 
@@ -157,7 +198,7 @@ body {
   justify-content: space-between;
 }
 .details-header .btn {
-  color: #333;
+  color: #fff;
   height: 30px;
   width: 30px;
   text-decoration: none;
