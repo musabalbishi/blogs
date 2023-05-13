@@ -108,7 +108,6 @@ app.post("/addBlog", (req, res) => {
     .save()
     .then((savedBlog) => {
       console.log(typeof selectedTag);
-
       if (typeof selectedTag === "object") {
         selectedTag.forEach((tag) => {
           Tag.findById(tag).then((tagId) => {
@@ -117,14 +116,14 @@ app.post("/addBlog", (req, res) => {
             tagId.save();
           });
         });
+      } else if (typeof selectedTag === "string") {
+        Tag.findById(selectedTag).then((tagId) => {
+          tagId.blogs.push(savedBlog._id);
+          console.log(tagId);
+          tagId.save();
+        });
       } else {
-        console.log("is not array");
-        // selectedTag.forEach((tag) => {
-        //   Tag.findOneAndUpdate(
-        //     { _id: tag },
-        //     { $append: { blogs: savedBlog._id } }
-        //   );
-        // });
+        console.log("not an object or array");
       }
     })
     .catch((e) => {
