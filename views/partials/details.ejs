@@ -11,6 +11,12 @@
 </header>
 <div class="b-content">
   <p class="body"><%= foundBlog.body %></p>
+  <% for( tag of foundBlog.tags ) { %>
+  <h3 style="background: orange; padding: 10px; margin: 5px; max-width: 100px">
+    <%= tag.name %>
+  </h3>
+  <% } %>
+
   <div class="time">
     <p>created at: <%=foundBlog.createdAt %></p>
   </div>

@@ -22,6 +22,7 @@ mongoose
   });
 const User = require("./models/User");
 const Blog = require("./models/Blog");
+const Tag = require("./models/Tag");
 const ProfileModule = require("./models/Profile");
 const Profile = ProfileModule.Profile;
 //
@@ -51,20 +52,7 @@ app.post("/signup", (req, res) => {
     });
   res.redirect("/");
 });
-// add profile
-app.get("/profiles", (req, res) => {
-  const p = new Profile({
-    bio: "dd",
-    workExp: "dd",
-  });
-  p.save()
-    .then(() => {
-      console.log("good");
-    })
-    .catch((e) => {
-      console.log(e.message);
-    });
-});
+
 // find profile by id --> not working
 app.get("/findUserProfile", (req, res) => {
   User.findById("645b4f1125279e68253dc4f4")
@@ -89,38 +77,62 @@ app.get("/createUserWithProfile", (req, res) => {
   });
 });
 //
-app.get("/createProfileWithUser", (req, res) => {
-  User.findById("645b4dba967cb6de825edbd3").then((user) => {
-    const p = new Profile({
-      bio: "mmmmm",
-      workExp: "1234",
-      userProfile: user._id,
-    });
+// app.get("/createProfileWithUser", (req, res) => {
+//   User.findById("645b4dba967cb6de825edbd3").then((user) => {
+//     const p = new Profile({
+//       bio: "mmmmm",
+//       workExp: "1234",
+//       userProfile: user._id,
+//     });
 
-    p.save().then(() => {
-      res.send(p);
-    });
-  });
-});
+//     p.save().then(() => {
+//       res.send(p);
+//     });
+//   });
+// });
 // add blogs
 app.get("/addBlog", (req, res) => {
-  res.render("addBlog.ejs");
+  Tag.find().then((foundTags) => {
+    res.render("addBlog.ejs", { allTags: foundTags });
+  });
 });
+
 app.post("/addBlog", (req, res) => {
+  const selectedTag = req.body.selectedTags;
   const blog = new Blog({
     title: req.body.title,
     body: req.body.content,
+    tags: selectedTag,
   });
   blog
     .save()
-    .then(() => {
-      console.log("record inserted");
+    .then((savedBlog) => {
+      console.log(typeof selectedTag);
+
+      if (typeof selectedTag === "object") {
+        selectedTag.forEach((tag) => {
+          Tag.findById(tag).then((tagId) => {
+            tagId.blogs.push(savedBlog._id);
+            console.log(tagId);
+            tagId.save();
+          });
+        });
+      } else {
+        console.log("is not array");
+        // selectedTag.forEach((tag) => {
+        //   Tag.findOneAndUpdate(
+        //     { _id: tag },
+        //     { $append: { blogs: savedBlog._id } }
+        //   );
+        // });
+      }
     })
     .catch((e) => {
       console.log(e.message);
     });
   res.redirect("/");
 });
+
 // blog details
 app.get("/article/:id", (req, res) => {
   Blog.findById(req.params.id)
@@ -167,6 +179,29 @@ app.post("/updateBlog/:id", (req, res) => {
       });
   });
 });
+
+// user -> blog(many to many)
+app.get("/createBlogWithUser/:userId", (req, res) => {
+  const userId = req.params.userId;
+  User.findById(userId).then((foundUser) => {
+    // query params:
+    const bodyParams = req.query.body;
+    const titleParams = req.query.title;
+    const blog = new Blog({
+      title: titleParams,
+      body: bodyParams,
+      user: foundUser,
+    });
+    blog.save().then((savedBlog) => {
+      foundUser.blogs.push(savedBlog);
+      foundUser.save().then(() => {
+        res.send("blog added");
+      });
+    });
+  });
+});
+
+//
 app.listen(5500, () => {
   console.log("Connected on Port 5500");
 });

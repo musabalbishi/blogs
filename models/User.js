@@ -11,11 +11,17 @@ const userSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "profile",
     },
+    blogs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "blog",
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("user", userSchema);
 module.exports = User;

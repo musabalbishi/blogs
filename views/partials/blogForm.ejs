@@ -4,6 +4,12 @@
     <input type="text" name="title" />
     <label>content:</label>
     <input type="text" name="content" class="body" />
+    <select name="selectedTags" multiple>
+      <% for( tags of allTags) { %>
+      <option value="<%= tags._id %>"><%= tags.name %></option>
+      <% } %>
+    </select>
     <button type="submit">Add Blog</button>
+    <!-- add select to choose tags -->
   </form>
 </div>
