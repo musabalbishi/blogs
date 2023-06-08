@@ -95,8 +95,21 @@ body {
     padding: 0 1rem;
     .blog-sidebar {
       background-color: $grid-color;
-      // grid-row: span 2;
       border-radius: $blog-cards-radius;
+
+      a {
+        margin-bottom: 1rem;
+        border-radius: 10px;
+        background-color: #d9e4f5;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: left;
+        flex-direction: column;
+        color: #444;
+        text-decoration: none;
+      }
     }
   }
   .blog-container {

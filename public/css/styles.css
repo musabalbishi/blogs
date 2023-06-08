@@ -84,6 +84,19 @@ body {
   background-color: rgba(255, 244, 244, 0.1);
   border-radius: 10px;
 }
+.main-section .blog-main-cont .blog-sidebar a {
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background-color: #d9e4f5;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  flex-direction: column;
+  color: #444;
+  text-decoration: none;
+}
 .main-section .blog-container {
   display: flex;
   align-items: center;

@@ -2,18 +2,20 @@ const express = require("express");
 const mongoose = require("mongoose");
 const parser = require("body-parser");
 const path = require("path");
+const dotenv = require("dotenv").config();
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 
 const app = express();
 app.set("view engine", "ejs");
 app.use(parser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cookieParser());
+app.use(session({ secret: "mysecret" }));
 ////////////////////////////////////////////////////////
 // DB connection
 mongoose
-  .connect(
-    "mongodb+srv://musab:musab123m@cluster0.tcmbhbd.mongodb.net/?retryWrites=true&w=majority"
-    // "mongodb://0.0.0.0:27017/blogs"
-  )
+  .connect(process.env.DB_URI)
   .then(() => {
     console.log("DB connection successeded");
   })
@@ -199,8 +201,45 @@ app.get("/createBlogWithUser/:userId", (req, res) => {
     });
   });
 });
+// reg
+app.get("/reg", (req, res) => {
+  let username = req.query.username;
+  let email = req.query.email;
+  let pass = req.query.pass;
+  const u = new User({
+    username: username,
+    password: pass,
+    email: email,
+  });
+  u.save().then(() => {
+    res.send("user saved");
+  });
+});
+// login
+app.get("/login", (req, res) => {
+  const username = req.query.username;
+  const pass = req.query.pass;
+  User.findOne({ username: username, password: pass }).then((foundUser) => {
+    // res.send(username + " " + pass);
+    if (foundUser) {
+      res.send(foundUser);
+    } else {
+    }
+  });
+});
+// sessions
+app.get("/session", (req, res) => {
+  res.send("listening to session");
+});
 
+app.get("/secret", (req, res) => {
+  res.send("jjjj");
+});
+app.get("addToCart", (req, res) => {
+  req.session.numberOfItems = 1;
+  res.send("done");
+});
 //
-app.listen(5500, () => {
+app.listen(process.env.PORT, () => {
   console.log("Connected on Port 5500");
 });
